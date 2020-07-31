@@ -1,0 +1,10 @@
+prefix: "&8[&6&lRegionsInfo&8]"
+noPerm: "&cYou don't have enough permission"
+reloadConfig: "&aConfiguration has successfully reloaded"
+barOn: "Actionbar &atoggled on"
+barOff: "Actionbar &ctoggled off"
+help:
+  - "&6/rginfo &f- main plugin command"
+  - "&6/ri help &f- help information"
+  - "&6/ri toggle &f- toggle on/off regions info"
+  - "&6/ri reload &f- reload plugin"

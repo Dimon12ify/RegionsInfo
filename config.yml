@@ -1,0 +1,10 @@
+showBar: true
+showBarIfNoRegion: true
+global: "&fThere is &b&lno region &fhere"
+format: "&fYou are in region: &b&l%region%"
+regions:
+  spawn: "spawn"
+  pvp: "&4PvP"
+disabled_worlds:
+  - disabledWorld1
+  - disabledWorld2

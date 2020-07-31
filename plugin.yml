@@ -1,0 +1,32 @@
+name: RegionsInfo
+main: ru.servbuy.regions.Main
+author: FlamesYT
+version: 2.0
+depend: [WorldGuard]
+commands:
+  rginfo:
+    description: shows information about plugin
+    permission: rginfo.info
+    aliases: [ri]
+    usage: /rginfo
+           /ri
+           /ri reload
+           /ri ?
+           /ri help
+           /ri toggle
+permissions:
+  rginfo.*:
+    description: Gives access to all rginfo commands
+    children:
+      rginfo.reload: true
+      rginfo.info: true
+      rginfo.toggle: true
+  rginfo.reload:
+    description: Allows you to reload plugin
+    default: op
+  rginfo.info:
+    description: Allows you to see plugin info
+    default: true
+  rginfo.toggle:
+    description: Allows you to toggle actionbar
+    default: true
