@@ -1,7 +1,9 @@
 package ru.servbuy.regions;
 
-import org.bukkit.Bukkit;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.Plugin;
 
 import java.lang.reflect.Field;
@@ -11,25 +13,18 @@ import java.lang.reflect.Method;
 public class ActionBar
 {
     public static String version;
-    public static boolean works;
+    public static boolean works = true;
     public static Plugin plugin;
-    
+
+    @EventHandler
     public static void sendActionBar(final Player player, final String message) {
-        if (!player.isOnline()) {
-            return;
-        }
-        final ActionBarMessageEvent actionBarMessageEvent = new ActionBarMessageEvent(player, message);
-        Bukkit.getPluginManager().callEvent(actionBarMessageEvent);
-        if (actionBarMessageEvent.isCancelled()) {
-            return;
-        }
-        if (version.substring(3).compareTo("12") > 0 && !version.startsWith("v1_8_") && !version.startsWith("v1_9_")) {
+        if (!player.isOnline()) return;
+        if(version.startsWith("v1_16"))
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
+        else if (version.substring(3).compareTo("12") > 0 && !version.startsWith("v1_8_") && !version.startsWith("v1_9_"))
             sendActionBarPost112(player, message);
-            //player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-        }
-        else {
+        else
             sendActionBarPre112(player, message);
-        }
     }
 
     private static void sendActionBarPost112(final Player player, final String message) {
@@ -82,13 +77,10 @@ public class ActionBar
     }
 
     private static void nmsFooter(Class<?> craftPlayerClass, Object craftPlayer, Class<?> c5, Object ppoc) throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
-        final Method m4 = craftPlayerClass.getDeclaredMethod("getHandle", new Class[0]);
-        final Field f1 = m4.invoke(craftPlayer, new Object[0]).getClass().getDeclaredField("playerConnection");
-        final Object pc = f1.get(m4.invoke(craftPlayer, new Object[0]));
+        final Method m4 = craftPlayerClass.getDeclaredMethod("getHandle");
+        final Field f1 = m4.invoke(craftPlayer).getClass().getDeclaredField("playerConnection");
+        final Object pc = f1.get(m4.invoke(craftPlayer));
         pc.getClass().getDeclaredMethod("sendPacket", c5).invoke(pc, ppoc);
     }
 
-    static {
-        ActionBar.works = true;
-    }
 }
