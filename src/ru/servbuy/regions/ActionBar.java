@@ -18,7 +18,7 @@ public class ActionBar
 
     @EventHandler
     public static void sendActionBar(final Player player, final String message) {
-        if (!player.isOnline()) return;
+        if (!player.isOnline() || !player.hasPermission("rginfo.see")) return;
         if(version.startsWith("v1_16"))
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
         else if (version.substring(3).compareTo("12") > 0 && !version.startsWith("v1_8_") && !version.startsWith("v1_9_"))
@@ -28,9 +28,6 @@ public class ActionBar
     }
 
     private static void sendActionBarPost112(final Player player, final String message) {
-        if (!player.isOnline()) {
-            return;
-        }
         try {
             final Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + ActionBar.version + ".entity.CraftPlayer");
             final Object craftPlayer = craftPlayerClass.cast(player);
@@ -55,9 +52,6 @@ public class ActionBar
     }
 
     private static void sendActionBarPre112(final Player player, final String message) {
-        if (!player.isOnline()) {
-            return;
-        }
         try {
             final Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + ActionBar.version + ".entity.CraftPlayer");
             final Object craftPlayer = craftPlayerClass.cast(player);

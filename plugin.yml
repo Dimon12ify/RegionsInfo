@@ -1,7 +1,7 @@
 name: RegionsInfo
 main: ru.servbuy.regions.Main
 author: FlamesYT
-version: 2.0
+version: 2.2
 depend: [WorldGuard]
 commands:
   rginfo:
@@ -10,17 +10,18 @@ commands:
     aliases: [ri]
     usage: /rginfo
            /ri
-           /ri reload
            /ri ?
            /ri help
            /ri toggle
+           /ri reload
 permissions:
   rginfo.*:
-    description: Gives access to all rginfo commands
+    description: Gives full access to all rginfo commands
     children:
       rginfo.reload: true
       rginfo.info: true
       rginfo.toggle: true
+      rginfo.see: true
   rginfo.reload:
     description: Allows you to reload plugin
     default: op
@@ -29,4 +30,7 @@ permissions:
     default: true
   rginfo.toggle:
     description: Allows you to toggle actionbar
-    default: true
+    default: false
+  rginfo.see:
+    description: Allows you to see regions info
+    default: false

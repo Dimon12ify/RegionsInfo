@@ -21,13 +21,13 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = null;
-        prefix = Main.translateColor(Main.locale.getString("prefix") + "&f");
+        prefix = Main.translateColor(Main.locale.getString("prefix") + "&f ");
         if (sender instanceof Player)
             player = (Player) sender;
         if (cmd.getName().equalsIgnoreCase("rginfo") && args.length == 0){
             PrintColorMessage(sender, "&6&lRegionsInfo v" + plugin.getDescription().getVersion() +
                     "\n&fMade by &b&nvk.com/servbuy\n&fFor help type &a&l/ri help");
-                    //"\n&fПлагин создан группой &b&nvk.com/servbuy \n&fАвтор &e&lFlamesYT: &b&nvk.com/dimonl2\n&fДля помощи пиши &a&l/ri help");
+                    //"\n&fПлагин создан группой &bvk.com/servbuy \n&fАвтор &e&lFlamesYT: &bvk.com/dimonl2\n&fДля помощи пиши &a&l/ri help");
             return true;
         }
         else if (cmd.getName().equalsIgnoreCase("rginfo")){
